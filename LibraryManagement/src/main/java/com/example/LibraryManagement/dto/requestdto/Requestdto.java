@@ -12,7 +12,7 @@ public class Requestdto {
 
     private String authername;
     private String bookname;
-    @Email
+    @Email(message = "Enter a valid email")
     private String email;
 
 }

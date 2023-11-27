@@ -1,5 +1,6 @@
 package com.example.LibraryManagement.service.impl;
 
+import com.example.LibraryManagement.Exception.ItemNotFound;
 import com.example.LibraryManagement.dto.requestdto.Requestdto;
 import com.example.LibraryManagement.dto.responsedto.Responsedto;
 import com.example.LibraryManagement.entity.Library;
@@ -32,7 +33,7 @@ public class LibraryServiceImpl implements LibraryService {
 
     @Override
     public Responsedto<Library> UpdateBook(Requestdto requestdto, Long id) {
-      Library library=  libraryRepository.findById(id).orElse(null);
+      Library library=  libraryRepository.findById(id).orElseThrow(()->new ItemNotFound("Student not found"));
       if(library!=null){
           library.setLibraryname(requestdto.getLibraryname());
           library.setBookname(requestdto.getBookname());
